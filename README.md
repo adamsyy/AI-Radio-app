@@ -4,7 +4,7 @@ Adamsy Radios is an AI controlled radio app in which the user can command the ap
 I have used ALan to bring the voice controlled AI features inside the application, audioplayers plugin to play the radios and VelocityX for the seamless UI.
 
 
-[Apk download Link](https://drive.google.com/file/d/1TQvwY7VvX20ulNEwZ1ndj4rfNeBMKSu3/view?usp=sharing)
+[Apk download Link](https://drive.google.com/file/d/1tShxDTBQSnMOt52rgjieHf3aHWk9z4TR/view?usp=sharing)
  <br /> 
 [Entire code base download link(cannot push it here because its >100mb)](https://drive.google.com/drive/folders/1mJyiSJ9oTNhy8uM0-7X5zWnXTTd1DmBw?usp=sharing)
 
