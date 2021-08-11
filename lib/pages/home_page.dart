@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:adamsy/models/radio.dart';
 import 'package:adamsy/utils/ai_util.dart';
+import 'package:alan_voice/alan_voice.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class _HomepageState extends State<Homepage> {
   fetchRadios() async {
     final radiojson = await rootBundle.loadString("pics/radio.json");
     radios = MyRadioList.fromJson(radiojson).radios;
+    _selectedradio=radios[0];
     print(radios);
     setState(() {});
   }
@@ -38,6 +40,7 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     super.initState();
+    setupAlan();
     fetchRadios();
     _audioPlayer.onPlayerStateChanged.listen((event) {
       if (event == PlayerState.PLAYING) {
@@ -47,6 +50,22 @@ class _HomepageState extends State<Homepage> {
       }
       setState(() {});
     });
+  }
+
+  setupAlan(){
+    AlanVoice.addButton(
+        "ee83f9bacfd6d7a4277c3f37f33068772e956eca572e1d8b807a3e2338fdd0dc/stage",
+        buttonAlign: AlanVoice.BUTTON_ALIGN_LEFT);
+    AlanVoice.callbacks.add((command)=>_handlecommand(command.data));
+  }
+
+  _handlecommand(Map<String,dynamic> response){
+switch(response["command"]){
+  case "play":{_playmusic(_selectedradio.url);
+    break;
+  }
+  default: {print('no//////////////////////////////'); break;}
+}
   }
 
   @override
@@ -78,6 +97,7 @@ class _HomepageState extends State<Homepage> {
                     enlargeCenterPage: true,
                     itemCount: radios.length,
                     onPageChanged: (index) {
+
                       final colorhex = radios[index].color;
 
                       setState(() { _selectedcolor = Color(int.parse(colorhex));
@@ -162,7 +182,8 @@ class _HomepageState extends State<Homepage> {
                             }
                           })
                         ].vStack())
-                    .pOnly(bottom: context.percentHeight * 12)
+                    .pOnly(bottom: context.percentHeight * 12),
+
               ],
               fit: StackFit.expand,
               clipBehavior: Clip.antiAlias,
