@@ -1,3 +1,4 @@
+//@dart=2.9
 import 'package:adamsy/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

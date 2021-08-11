@@ -25,7 +25,7 @@ dependencies:
   flutter:
     sdk: flutter
   velocity_x: ^3.3.0
-
+  audioplayers: ^0.19.1
   google_fonts: ^2.1.0
 
 
